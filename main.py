@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import datetime
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+""" Importando a lib. """
+from requests import get
 
+""" Url do site que vai servir os dados."""
+url = 'http://gastosluxu.com.br/api/v1/comercio/'
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+""" Requisição ao site acima """
+resp = get(url)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+""" Se a requisição der certo retorna 200 """
+if resp.status_code == 200:
+    """ Para pegar a hora do sistema usei a lib datetime que é a mais indicada para quando se quer trabalhar com datas """
+    print(f'Requisição recebida às..: {datetime.datetime.now()}')
+else:
+    """ Se a requisição falhar, será retornado o motivo. """
+    print('Requisição não pode ser atendida pois o site está OFFLINE!!!')
